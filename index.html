@@ -28,31 +28,31 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* DOWNLOAD BANNER STYLES */
+        /* CUSTOM DOWNLOAD BANNER */
         #installBanner {
-            display: none;
+            display: none; /* Hidden by default, script will show it */
             background: var(--dark);
             color: var(--gold);
-            padding: 15px;
+            padding: 20px;
             text-align: center;
             border-bottom: 2px solid var(--gold);
             position: sticky;
             top: 0;
-            z-index: 9999;
+            z-index: 10000;
         }
 
         #installBtn {
             background: var(--gold);
             color: var(--dark);
             border: none;
-            padding: 8px 20px;
-            font-weight: bold;
+            padding: 10px 25px;
+            font-weight: 800;
             border-radius: 4px;
             margin-top: 10px;
             cursor: pointer;
             text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 1px;
+            font-size: 12px;
+            letter-spacing: 1.5px;
         }
 
         nav { 
@@ -66,11 +66,6 @@
             top: 0; 
             z-index: 1000;
             backdrop-filter: blur(10px);
-        }
-
-        /* Banner adjustment: if banner is visible, nav moves down */
-        #installBanner[style*="display: block"] + nav {
-            top: 70px;
         }
 
         .brand { 
@@ -188,8 +183,9 @@
 <body>
 
     <div id="installBanner">
-        <p style="margin: 0; font-size: 12px; letter-spacing: 1px;">INSTALL THE EKA INDULGENCE APP</p>
-        <button id="installBtn">Download Now</button>
+        <p style="margin: 0; font-weight: bold; font-size: 13px;">EKA INDULGENCE IS READY</p>
+        <p style="margin: 5px 0 0 0; font-size: 11px; opacity: 0.8;">Add to your home screen for the full experience</p>
+        <button id="installBtn">Add App to Phone</button>
     </div>
 
     <nav>
@@ -282,20 +278,18 @@
         const banner = document.getElementById('installBanner');
         const installBtn = document.getElementById('installBtn');
 
-        // Service Worker Registration
+        // Service Worker registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                .then(reg => console.log('Service Worker Registered'))
-                .catch(err => console.log('Service Worker Failed', err));
+                navigator.serviceWorker.register('sw.js');
             });
         }
 
-        // Catch the browser's "Install" signal
+        // Catch the browser signal to show the "Download" link
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            // Only show the banner on mobile/desktop browsers that support it
+            // Banner will show at the top of the site
             banner.style.display = 'block';
         });
 
@@ -308,6 +302,11 @@
                 }
                 deferredPrompt = null;
             }
+        });
+
+        // Hide banner if app is already installed
+        window.addEventListener('appinstalled', () => {
+            banner.style.display = 'none';
         });
     </script>
 
