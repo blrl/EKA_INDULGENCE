@@ -24,7 +24,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* PERMANENT APK DOWNLOAD SECTION */
+        /* APK DOWNLOAD SECTION */
         .download-header {
             background: var(--dark);
             color: var(--gold);
@@ -45,11 +45,12 @@
             text-transform: uppercase;
             font-size: 11px;
             letter-spacing: 1.5px;
+            transition: 0.3s;
         }
 
         nav { 
             background: rgba(255, 255, 255, 0.98); 
-            padding: 15px 5%; 
+            padding: 10px 5%; 
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -60,12 +61,10 @@
             backdrop-filter: blur(10px);
         }
 
-        .brand { 
-            font-family: 'Playfair Display', serif;
-            font-size: 20px; 
-            letter-spacing: 4px; 
-            text-transform: uppercase; 
-            font-weight: 700;
+        .brand img {
+            height: 55px;
+            width: auto;
+            display: block;
         }
 
         .nav-cta {
@@ -167,8 +166,16 @@
             background: #fafafa;
         }
 
+        .footer-logo {
+            height: 50px;
+            width: auto;
+            margin: 0 auto 15px;
+            opacity: 0.8;
+        }
+
         @media (max-width: 768px) {
             .catalog { grid-template-columns: 1fr; }
+            header h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -176,11 +183,13 @@
 
     <div class="download-header">
         <p style="margin: 0; font-weight: bold; font-size: 13px;">OFFICIAL ANDROID APP AVAILABLE</p>
-        <a href="EKA_Indulgence.apk" download class="apk-btn">Tap to Download App</a>
+        <a href="EKA_INDULGENCE.apk" download class="apk-btn">Tap to Download App</a>
     </div>
 
     <nav>
-        <div class="brand">EKA INDULGENCE</div>
+        <div class="brand">
+            <img src="logo.png" alt="EKA INDULGENCE">
+        </div>
         <a href="https://wa.me/2349064978596" class="nav-cta">Direct WhatsApp</a>
     </nav>
 
@@ -259,7 +268,7 @@
     </div>
 
     <footer>
-        <div class="brand">EKA INDULGENCE</div>
+        <img src="logo.png" alt="EKA INDULGENCE" class="footer-logo">
         <p>Lagos, Nigeria | WhatsApp: 09064978596</p>
         <p style="margin-top: 20px; opacity: 0.2;">&copy; 2026 Bespoke Luxury Artistry.</p>
     </footer>
